@@ -66,3 +66,40 @@ img {
     background-color: #3b5bdb;
     transform: translateY(-3px);
 }
+
+.projects {
+    padding: 80px 60px;
+}
+
+.projects h2 {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.projects-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.project-card {
+    background-color: #5573D9;
+    border-radius: 20px;
+    width: 300px;
+    overflow: hidden;
+}
+
+.project-image {
+    height: 180px;
+    background-color: #D9D9D9;
+}
+
+.project-content {
+    padding: 20px;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    transition: 0.3s;
+}
