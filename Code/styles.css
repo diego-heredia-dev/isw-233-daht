@@ -167,3 +167,32 @@ img {
 .article-content {
     padding: 20px;
 }
+
+.about-me {
+    padding: 80px 60px;
+}
+
+.about-me h2 {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.about-me-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.about-me-container h3 {
+    color: #5573D9;
+    font-weight: bold;
+}
+
+.about-me-box {
+    background-color: #D9D9D9;
+    color: black;
+    padding: 25px;
+    border-radius: 15px;
+}
