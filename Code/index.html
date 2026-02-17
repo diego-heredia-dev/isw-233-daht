@@ -23,14 +23,14 @@
         </div>
 
         <div class="hero-buttons">
-            <button>Mis proyectos</button>
-            <button>Mis artículos</button>
-            <button>Sobre mí</button>
-            <button>Contactame</button>
+            <button onclick="scrollToSecction('projects')">Mis proyectos</button>
+            <button onclick="scrollToSecction('articles')">Mis artículos</button>
+            <button onclick="scrollToSecction('about-me')">Sobre mí</button>
+            <button onclick="scrollToSecction('contact-me')">Contactame</button>
         </div>
     </section>
     
-    <section class="projects">
+    <section class="projects" id="projects">
         <h2>Mis proyectos</h2>
 
         <div class="projects-container">
@@ -87,7 +87,7 @@
         </div>
     </section>
 
-    <section class="articles">
+    <section class="articles" id="articles">
         <h2>Mis Artículos</h2>
 
         <div class="articles-container">
@@ -129,7 +129,7 @@
         </div>
     </section>
 
-    <section class="about-me">
+    <section class="about-me" id="about-me">
         <h2>Sobre Mí</h2>
 
         <div class="about-me-container">
@@ -177,7 +177,7 @@
         </div>
     </section>
 
-    <section class="contact-me">
+    <section class="contact-me" id="contact-me">
         <h2>Contáctame</h2>
 
         <div class="contact-me-container">
@@ -211,6 +211,8 @@
             </div>
         </div>
     </section>
+
+    <script src="app.js"></script>
 </body>
 </html>
 
