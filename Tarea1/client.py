@@ -9,12 +9,12 @@ def StartClient(port):
     samplerate = 8000
     frame_size = np.dtype('float32').itemsize
 
-    while True:
-        server_ip = input("Ingrese IP del servidor (o 'q' para salir): ")
-        if server_ip.lower() == 'q':
-            break
+    server_ip = input("Ingrese IP del servidor: ")
 
-        input("Presione Enter para grabar...")
+    while True:    
+        decision = input("Presione Enter para grabar... o q para salir: ")
+        if decision.lower() == 'q':
+            break
 
         print("Grabando...")
         audio = sd.rec(frames, samplerate=samplerate, channels=1, dtype='float32')
