@@ -1,6 +1,6 @@
 import random
 
-class SeaBattaleField:
+class SeaBattleField:
     UNKNOWN = 0
     SHIP = 1
     HIT = 2
@@ -17,17 +17,23 @@ class SeaBattaleField:
             print(" ".join(str(cell) for cell in row))
     
     def shoot(self, x, y):
+        if not (0 <= x < self.size and 0 <= y < self.size):
+            return 0
+
+        if self.board[y][x] in (self.HIT, self.MISS, self.KILL):
+            return 0
+        
         if self.board[y][x] == self.SHIP:
-            self.board[y][x] = self.HIT
+            self.mark_hit(x, y)
             
             if self.is_ship_destroyed(x, y):
-                self.mark_ship_as_killed(x, y)
+                self.mark_entire_ship_as_killed(x, y)
                 return 2
 
             return 1
         
         else:
-            self.board[y][x] = self.MISS
+            self.mark_miss(x, y)
             return 0
     
     def get_random_field(self, seed):
@@ -117,7 +123,7 @@ class SeaBattaleField:
 
         return True
     
-    def mark_ship_as_killed(self, x, y):
+    def mark_entire_ship_as_kill(self, x, y):
         visited = set()
         stack = [(x, y)]
         
@@ -138,8 +144,14 @@ class SeaBattaleField:
                     if self.board[ny][nx] == self.HIT:
                         stack.append((nx, ny))
 
-                        
+    def mark_miss(self, x, y):
+        self.board[y][x] = self.MISS
 
+    def mark_hit(self, x, y):
+        self.board[y][x] = self.HIT
+    
+    def mark_kill(self, x, y):
+        self.board[y][x] = self.KILL
 
 field = SeaBattaleField()
 field.get_random_field(123)
