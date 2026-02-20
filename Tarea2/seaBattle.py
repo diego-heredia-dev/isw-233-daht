@@ -153,6 +153,3 @@ class SeaBattleField:
     def mark_kill(self, x, y):
         self.board[y][x] = self.KILL
 
-field = SeaBattaleField()
-field.get_random_field(123)
-field.print_field()
