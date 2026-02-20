@@ -65,44 +65,74 @@ class SeaBattleAgent:
         self.conn = conn
         self.is_my_turn = is_my_turn
 
+        self.size = 8
+        self.opponent_board = [
+            [SeaBattleField.UNKNOWN for _ in range(self.size)]
+            for _ in range(self.size)
+        ]
+
     def start_game(self):
-        while True:
-            if self.is_my_turn:
-                move = input("Tu turno: ")
-                coords = parse_move(move)
+        try:
+            while True:
+                if self.is_my_turn:
+                    move = input("Tu turno: ")
+                    coords = parse_move(move)
 
-                if coords is None:
-                    continue
+                    if coords is None:
+                        continue
 
-                self.conn.sendall(move.encode())
-                result = int.from_bytes(read_exact(self.conn, 1), "big")
+                    (x, y) = coords
 
-                print("Resultado:", result)
+                    self.conn.sendall(move.encode())
+                    result = int.from_bytes(read_exact(self.conn, 1), "big")
 
-                if result == 0:
-                    self.is_my_turn = False
-            else:
-                move_bytes = read_exact(self.conn, 2)
-                move_text = move_bytes.decode()
+                    print("Resultado:", result)
 
-                coords = parse_move(move_text)
-
-                if coords is None:
-                    continue
+                    if result == 0:
+                        self.opponent_board[y][x] =  SeaBattleField.MISS
+                        self.is_my_turn = False
+                    elif result == 1:
+                        self.opponent_board[y][x] = SeaBattleField.HIT
+                    elif result == 2:
+                        self.opponent_board[y][x] = SeaBattleField.KILL
                 
-                (x, y) = coords
+                else:
+                    move_bytes = read_exact(self.conn, 2)
+                    move_text = move_bytes.decode()
 
-                result = self.field.shoot(x, y)
-                self.conn.sendall(bytes([result]))
+                    coords = parse_move(move_text)
 
-                print("Oponente disparo:", move_text)
+                    if coords is None:
+                        continue
+                    
+                    (x, y) = coords
 
-                if result == 0:
-                    self.is_my_turn = True
+                    result =  self.field.shoot(x, y)
+                    self.conn.sendall(bytes([result]))
 
-                if self.field.is_loser():
-                    print("Perdiste")
-                    break
+                    print("Oponente disparo:", move_text)
+
+                    if result == 0:
+                        self.is_my_turn = True
+
+                    if self.field.is_loser():
+                        print("Perdiste")
+                        self.conn.close()
+                        break
+                
+                self.print_fields()
+
+        except ConnectionError:
+            print("Ganaste, el oponente se desconecto")
+
+    def print_fields(self):
+        print("\n---Mi Tablero---")
+        for row in self.field.board:
+            print(" ".join(str(cell) for cell in row))
+
+        print("\n---Tablero Oponente---")
+        for row in self.opponent_board:
+            print(" ".join(str(cell) for cell in row))
 
 if __name__ == "__main__":
     mode = input("server/client: ")

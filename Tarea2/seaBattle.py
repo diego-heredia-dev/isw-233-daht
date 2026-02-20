@@ -27,7 +27,7 @@ class SeaBattleField:
             self.mark_hit(x, y)
             
             if self.is_ship_destroyed(x, y):
-                self.mark_entire_ship_as_killed(x, y)
+                self.mark_entire_ship_as_kill(x, y)
                 return 2
 
             return 1
