@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Diego</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <section class="hero">
+        <h1>Estudiante de Ingeniería de Software</h1>
+        <p>Ubicación: Santa Cruz de la Sierra, Bolivia</p>
+
+        <div class="hero-card">
+            <div class="hero-text">
+                <p>Mi nombre es Diego Heredia, estudiante de 3 año de ingenieria de software.</p>
+                <p>Me gusta aprender cosas nueva, siempre dispuesto a ayudar y curioso con el por que de las cosas.</p>
+                <p>Mis hobbies son jugar video juegos, leer libros y novelas ligeras, y desarrollar video juegos.</p>
+            </div>
+            <div class="hero-image">
+                <img src="https://shorturl.at/Nxwrh" alt="Mudkip-Foto-Mia">
+            </div>
+        </div>
+
+        <div class="hero-buttons">
+            <button onclick="scrollToSecction('projects')">Mis proyectos</button>
+            <button onclick="scrollToSecction('articles')">Mis artículos</button>
+            <button onclick="scrollToSecction('about-me')">Sobre mí</button>
+            <button onclick="scrollToSecction('contact-me')">Contactame</button>
+        </div>
+    </section>
+    
+    <section class="projects" id="projects">
+        <h2>Mis proyectos</h2>
+
+        <div class="projects-container">
+
+            <a href="https://github.com/diego-heredia-dev/DB2-TiendaManga"
+               target="_blank"
+               class="project-card">
+                <div class="project-image">
+                    <img src="https://shorturl.at/oTaQq" alt="Mangas">
+                </div>
+
+                <div class="project-content">
+                    <p class="date">11 de abril de 2025</p>
+                    <h3>Tienda de mangas (cómics japoneses)</h3>
+                    <p>
+                        Una app para la gestión de una tienda de mangas, hecha con Tkinter y MS SQL Server.
+                        Un CRUD para los mangas, además de la separación de roles y métricas.
+                    </p>
+                </div>
+            </a>
+
+            <a href="https://github.com/diego-heredia-dev/Examen-Final-Programacion-II"
+               target="_blank"
+               class="project-card">
+                <div class="project-image">
+                    <img src="https://shorturl.at/gzZGn" alt="biblioteca">
+                </div>
+
+                <div class="project-content">
+                    <p class="date">21 de junio de 2025</p>
+                    <h3>Reserva de libros para un biblioteca</h3>
+                    <p>
+                        Una app que permite al usuario buscar y reservar libros.
+                        El frontend fue hecho con Angular y el backend con .NET; para la base de datos se usó MS SQL Server.
+                    </p>
+                </div>
+            </a>
+
+            <a href="https://github.com/linuxenthusiastic/Reserva-Estacionamiento"
+               target="_blank"
+               class="project-card">
+                <div class="project-image">
+                    <img src="https://shorturl.at/Awsxw" alt="Estacinamientos">
+                </div>
+                <div class="project-content">
+                    <p class="date">17 de diciembre de 2025</p>
+                    <h3>Reserva de estacionamientos</h3>
+                    <p>
+                        Una app web donde el usuario puede reservar espacios de diferente tipo y para diferentes tipos de vehículos. 
+                        También se implementó un CRUD para los roles con mayor control. Frontend: React, Backend: Spring Boot.
+                    </p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section class="articles" id="articles">
+        <h2>Mis Artículos</h2>
+
+        <div class="articles-container">
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=RDdQw4w9WgXcQ&start_radio=1" 
+               target="_blank"
+               class="article-card">
+                <div class="article-image">
+                    <img  src="https://shorturl.at/Dj6cU" alt="Artículo 1">
+                </div>
+                <div class="article-content">
+                    <h3>No publiqué artículos.</h3>
+                    <p>No publiqué artículos.</p>
+                </div>    
+            </a>
+
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=RDdQw4w9WgXcQ&start_radio=1"
+               target="_blank"
+               class="article-card">
+               <div class="article-image">
+                    <img  src="https://shorturl.at/Dj6cU" alt="Artículo 1">
+               </div>
+               <div class="article-content">
+                    <h3>No publiqué artículos.</h3>
+                    <p>No publiqué artículos.</p>
+               </div>
+            </a>
+
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=RDdQw4w9WgXcQ&start_radio=1"
+               target="_blank"
+               class="article-card">
+               <div class="article-image">
+                    <img  src="https://shorturl.at/Dj6cU" alt="Artículo 1">
+               </div>
+               <div class="article-content">
+                    <h3>No publiqué articulos.</h3>
+                    <p>No publiqué artículos.</p>
+               </div>
+            </a>
+        </div>
+    </section>
+
+    <section class="about-me" id="about-me">
+        <h2>Sobre Mí</h2>
+
+        <div class="about-me-container">
+            <div class="about-me-box">
+                <h3>Perfil Profesional</h3>
+                <p>
+                    Estudiante de Ingeniería de Software con interés en el desarrollo de aplicaciones y resolución de problemas mediante programación.
+                    He trabajado en proyectos académicos utilizando C++, C#, Java, JavaScript y SQL.
+                    Motivado por aprender buenas prácticas y fortalecer mis habilidades técnicas y de criterio.
+                </p>
+            </div>
+        
+            <div class="about-me-box">
+                <h3>Educación</h3>
+                <p>
+                    Ingeniería de Software, UCB (Universidad Católica Boliviana) de Santa Cruz, 2024 - Actualidad
+                </p>
+            </div>
+
+            <div class="about-me-box">
+                <h3>Experiencia</h3>
+                <p>
+                    Proyectos académicos:
+                    - Desarrollo de aplicaciones pequeñas como parte de cursos universitarios.
+                    - Implementación de lógica de negocio en C# y Java.
+                    - Uso de base de datos SQL para almacenamiento y consulta.
+                </p>
+            </div>
+
+            <div class="about-me-box">
+                <h3>Skills</h3>
+                <p>
+                    FrontEnd: Angular
+                    BackEnd: .NET y Spring Boot
+                    Base de datos MS SQL Server
+                </p>
+            </div>
+
+            <div class="about-me-box">
+                <h3>Hobbies</h3>
+                <p>
+                    Leer novelas ligeras y libros, jugar videojuegos, desarrollar videojuegos y ver series y películas.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-me" id="contact-me">
+        <h2>Contáctame</h2>
+
+        <div class="contact-me-container">
+            <div class="contact-me-form">
+
+                <h3>Envíame un mensaje</h3>
+
+                <form>
+                    <input type="text" placeholder="Nombre completo" required>
+                    <input type="email" placeholder="Correo electrónico" required>
+                    <textarea placeholder="Mensaje" rows="4" required></textarea>
+                    <input type="text" placeholder="Número de teléfono (opcional)">
+
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+
+            <div class="contact-me-info">
+                <p>
+                    <strong>LinkedIn:</strong><br>
+                    https://linkedin.com/in/diego-andres-heredia-ticona-79b11a337/
+                </p>
+                <p>
+                    <strong>Github:</strong><br>
+                    https://github.com/diego-heredia-dev
+                </p>
+                <p>
+                    <strong>Instagram</strong><br>
+                    diego_hka
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script src="main.js"></script>
+</body>
+</html>
