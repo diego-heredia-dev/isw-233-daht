@@ -1,0 +1,27 @@
+.articles {
+    padding: 80px 60px;
+}
+
+.articles__title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.articles__container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.card--article {
+    background-color: #1E2A4A; 
+}
+
+.card--article:hover {
+    box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+}
+
+.card--article .card__content {
+    color: #070C14;
+}

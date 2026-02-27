@@ -1,0 +1,30 @@
+.about-me {
+    padding: 80px 60px;
+}
+
+.about-me__title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.about-me__container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.about-me__box {
+    background-color: #D9D9D9;
+    color: black;
+    padding: 25px;
+    border-radius: 15px;
+}
+
+.about-me__box-title {
+    color: #5573D9;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
