@@ -4,48 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portafolio Diego</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
     <section class="hero">
-        <h1>Estudiante de Ingeniería de Software</h1>
-        <p>Ubicación: Santa Cruz de la Sierra, Bolivia</p>
+        <h1 class="hero__title">Estudiante de Ingeniería de Software</h1>
+        <p class="hero__subtitle">Ubicación: Santa Cruz de la Sierra, Bolivia</p>
 
-        <div class="hero-card">
-            <div class="hero-text">
+        <div class="hero__card">
+            <div class="hero__text">
                 <p>Mi nombre es Diego Heredia, estudiante de 3 año de ingenieria de software.</p>
                 <p>Me gusta aprender cosas nueva, siempre dispuesto a ayudar y curioso con el por que de las cosas.</p>
                 <p>Mis hobbies son jugar video juegos, leer libros y novelas ligeras, y desarrollar video juegos.</p>
             </div>
-            <div class="hero-image">
+            <div class="hero__image">
                 <img src="https://shorturl.at/Nxwrh" alt="Mudkip-Foto-Mia">
             </div>
         </div>
 
-        <div class="hero-buttons">
-            <button onclick="scrollToSecction('projects')">Mis proyectos</button>
-            <button onclick="scrollToSecction('articles')">Mis artículos</button>
-            <button onclick="scrollToSecction('about-me')">Sobre mí</button>
-            <button onclick="scrollToSecction('contact-me')">Contactame</button>
+        <div class="hero__buttons">
+            <button class="hero__button" onclick="scrollToSecction('projects')">Mis proyectos</button>
+            <button class="hero__button" onclick="scrollToSecction('articles')">Mis artículos</button>
+            <button class="hero__button" onclick="scrollToSecction('about-me')">Sobre mí</button>
+            <button class="hero__button" onclick="scrollToSecction('contact-me')">Contactame</button>
         </div>
     </section>
     
     <section class="projects" id="projects">
-        <h2>Mis proyectos</h2>
+        <h2 class="projects_title">Mis proyectos</h2>
 
-        <div class="projects-container">
+        <div class="projects__container">
 
             <a href="https://github.com/diego-heredia-dev/DB2-TiendaManga"
                target="_blank"
-               class="project-card">
-                <div class="project-image">
+               class="card card--project">
+                <div class="card__image">
                     <img src="https://shorturl.at/oTaQq" alt="Mangas">
                 </div>
 
-                <div class="project-content">
-                    <p class="date">11 de abril de 2025</p>
-                    <h3>Tienda de mangas (cómics japoneses)</h3>
-                    <p>
+                <div class="card__content">
+                    <p class="card__date">11 de abril de 2025</p>
+                    <h3 class="card__title">Tienda de mangas (cómics japoneses)</h3>
+                    <p class="card__description">
                         Una app para la gestión de una tienda de mangas, hecha con Tkinter y MS SQL Server.
                         Un CRUD para los mangas, además de la separación de roles y métricas.
                     </p>
@@ -54,15 +54,15 @@
 
             <a href="https://github.com/diego-heredia-dev/Examen-Final-Programacion-II"
                target="_blank"
-               class="project-card">
-                <div class="project-image">
+               class="card card--project">
+                <div class="card__image">
                     <img src="https://shorturl.at/gzZGn" alt="biblioteca">
                 </div>
 
-                <div class="project-content">
-                    <p class="date">21 de junio de 2025</p>
-                    <h3>Reserva de libros para un biblioteca</h3>
-                    <p>
+                <div class="card__content">
+                    <p class="card__date">21 de junio de 2025</p>
+                    <h3 class="card__title">Reserva de libros para un biblioteca</h3>
+                    <p class="card__description">
                         Una app que permite al usuario buscar y reservar libros.
                         El frontend fue hecho con Angular y el backend con .NET; para la base de datos se usó MS SQL Server.
                     </p>
@@ -71,14 +71,14 @@
 
             <a href="https://github.com/linuxenthusiastic/Reserva-Estacionamiento"
                target="_blank"
-               class="project-card">
-                <div class="project-image">
+               class="card card--project">
+                <div class="card__image">
                     <img src="https://shorturl.at/Awsxw" alt="Estacinamientos">
                 </div>
-                <div class="project-content">
-                    <p class="date">17 de diciembre de 2025</p>
-                    <h3>Reserva de estacionamientos</h3>
-                    <p>
+                <div class="card__content">
+                    <p class="card__date">17 de diciembre de 2025</p>
+                    <h3 class="card__title">Reserva de estacionamientos</h3>
+                    <p class="card__description">
                         Una app web donde el usuario puede reservar espacios de diferente tipo y para diferentes tipos de vehículos. 
                         También se implementó un CRUD para los roles con mayor control. Frontend: React, Backend: Spring Boot.
                     </p>
@@ -212,6 +212,6 @@
         </div>
     </section>
 
-    <script src="main.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>
