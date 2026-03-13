@@ -90,43 +90,28 @@
     <section class="articles" id="articles">
         <h2 class="articles__title">Mis Artículos</h2>
 
-        <div class="articles__container">
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=RDdQw4w9WgXcQ&start_radio=1" 
-               target="_blank"
-               class="card card--article">
-                <div class="card__image">
-                    <img  src="https://shorturl.at/Dj6cU" alt="Artículo 1">
+        <form class="articles__editor" id="article-form">
+            <input id="article-title-input" placeholder="Titulo" required>
+            <textarea id="article-content-input" placeholder="Contenido" required></textarea>
+            <button type="submit">Publicar</button>
+        </form>
+
+        <div class="articles__container" id="articles-container"></div>
+
+            <template class="article__template" id="article-template">
+                <div class="card card--article" data-id="">
+                    <div class="card__content">
+                        <h3 class="card__title"></h3>
+                        <p class="card__description"></p>
+
+                        <div class="card__actions">
+                            <button class="favorite-btn">☆</button>
+                            <button class="delete-btn">Delete</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="card__content">
-                    <h3 class="card__title">No publiqué artículos.</h3>
-                    <p class="card__description">No publiqué artículos.</p>
-                </div>    
-            </a>
+            </template>
 
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=RDdQw4w9WgXcQ&start_radio=1"
-               target="_blank"
-               class="card card--article">
-               <div class="card__image">
-                    <img  src="https://shorturl.at/Dj6cU" alt="Artículo 1">
-               </div>
-               <div class="card__content">
-                    <h3 class="card__title">No publiqué artículos.</h3>
-                    <p class="card__description">No publiqué artículos.</p>
-               </div>
-            </a>
-
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=RDdQw4w9WgXcQ&start_radio=1"
-               target="_blank"
-               class="card card--article">
-               <div class="card__image">
-                    <img  src="https://shorturl.at/Dj6cU" alt="Artículo 1">
-               </div>
-               <div class="card__content">
-                    <h3 class="card__title">No publiqué articulos.</h3>
-                    <p class="card__description">No publiqué artículos.</p>
-               </div>
-            </a>
-        </div>
     </section>
 
     <section class="about-me" id="about-me">
@@ -212,6 +197,6 @@
         </div>
     </section>
 
-    <script src="index.js"></script>
+    <script src="index.js" type="module" defer></script>
 </body>
 </html>
