@@ -1,39 +1,32 @@
-A continuación se describen los bloques principales del proyecto:
+A continuación se describen los patrones usandos
 
-🔹 hero
+🔹 Singleton
 
-Sección de presentación principal del portafolio.
-Contiene el título, subtítulo, tarjeta descriptiva y botones de navegación.
+Usado en articleManager.js para centralizar los articulos en un solo array.  
+De este modo solo una clase se encarga de agregar, editar, eliminar y cambiar el estado de favoritos de los articulos.  
+De lo contrario, podriamos tener multiples instancias de articulos, lo cual resultaria en codigo repetido en diferentes .js.  
+Esto dificultaria el agregar nuevas funciones, por que se tendria que agregar en diferentes partes del codigo.
 
-🔹 card
+🔹 Factory Method
 
-Componente reutilizable utilizado para representar contenido en formato tarjeta.
-Es utilizado tanto en la sección de proyectos como en artículos mediante modifiers.
+Usado en articleFactory.js  
+Separa la logica de creacion de articulos en una sola clase, de tal manera que no debemos repetir la misma logica en diferentes partes del codigo.  
+Ademas, así dispensamos de repetir codigo como la creacion de id y fecha, y lo centralizamos en una sola clase: ArticleFactory.
 
-Modifiers utilizados:
+🔹 Observer
 
-card--project
+Usado en mixin.js.  
+Separa la logica de negocio del renderizado de UI.  
+Ademas, evita actualizar el DOM sin control, solo actualiza el DOM cuando se realiza un cambio en el array articles al notificar los cambios
 
-card--article
+🔹 Mixin
 
-Este bloque permite reutilización sin duplicación de estilos.
+Usado en mixin.js.
+Basicamente evita el uso de herencia para compartir funciones.  
+En mi codigo se usa para compartir funciones entre articleManager.js y mixin.js
 
-🔹 projects
+🔹 Command
 
-Sección que muestra los proyectos desarrollados.
-Utiliza el bloque card con el modifier card--project.
-
-🔹 articles
-
-Sección destinada a artículos o publicaciones.
-Utiliza el bloque card con el modifier card--article.
-
-🔹 about-me
-
-Sección que describe información personal y profesional.
-Incluye elementos como título, contenedor y cajas informativas.
-
-🔹 contact-me
-
-Sección de contacto que incluye un formulario y enlaces a redes sociales.
-Todos los elementos internos siguen la nomenclatura BEM para mantener consistencia estructural.
+Usado en command.js.
+Cada operacion del usuario afecta al UI, si la UI llamara a ArticleManager quien tiene el CRUD de articles, entonces la interfaz quedaria acoplada a la logica de negocio.  
+Es por eso que debemos encapsular cada accion CRUD en comandos.
