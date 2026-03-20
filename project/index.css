@@ -2,8 +2,8 @@
 @import './blocks/card/card.css';
 @import './blocks/projects/projects.css';
 @import './blocks/articles/articles.css';
-@import './blocks/about-me/about-me.css';
-@import './blocks/contact-me/contact-me.css';
+@import './blocks/about/about.css';
+@import './blocks/contact/contact.css';
 
 body {
     background-color: #070C14;

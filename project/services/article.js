@@ -41,4 +41,14 @@ export class Article {
         this.#title = title;
         this.#content = content;
     }
+
+    toJSON() {
+        return {
+            id: this.id,
+            title: this.title,
+            content: this.content,
+            date: this.date,
+            favorite: this.favorite
+        };
+    }
 }

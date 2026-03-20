@@ -1,11 +1,23 @@
 import { ArticleManager } from "./services/articleManager.js";
 import { Command, Commands, CommandExecutor } from "./services/command.js";
 
+import { HomePage } from "./blocks/homepage/homePage.js";
+import { ProjectsPage } from "./blocks/projects/projects.js";
+import { ArticlesPage } from "./blocks/articles/articles.js";
+import { AboutPage } from "./blocks/about/about.js";
+import { ContactPage } from "./blocks/contact/contact.js";
+
+import Router from "./services/router.js";
+
 globalThis.DOM = {};
+globalThis.app = {};
+
 const DOM = globalThis.DOM;
+app.router = Router;
 
 const manager = ArticleManager.getInstance();
 
+/*
 function renderArticles() {
     DOM.articlesContainer.innerHTML = "";
 
@@ -31,16 +43,21 @@ function renderArticles() {
     });
 
 }
+*/
 
 document.addEventListener("DOMContentLoaded", () => {
+    /*
     DOM.articlesContainer = document.getElementById("articles-container");
     DOM.articleTemplate = document.getElementById("article-template");
     DOM.articleForm = document.getElementById("article-form");
     DOM.titleInput = document.getElementById("article-title-input");
     DOM.contentInput = document.getElementById("article-content-input");
+    */
 
-    manager.addObserver(renderArticles);
+    //manager.addObserver(renderArticles);
+    app.router.init();
 
+    /*
     DOM.articlesContainer.addEventListener("click", (event) => {
         const card = event.target.closest(".card");
         if(!card) return;
@@ -57,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
             CommandExecutor.execute(cmd);
         }
     });
-
+    
     DOM.articleForm.addEventListener("submit", (event) => {
         event.preventDefault();
 
@@ -73,11 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     renderArticles()
+    */
 });
-
-function scrollToSecction(id) {
-    document.getElementById(id).scrollIntoView({
-        behavior: "smooth"
-    });
-}
 

@@ -16,9 +16,9 @@ export class ArticleManager {
     }
 
     constructor() {
+        console.log("new manager");
         if(ArticleManager.instance) {
             throw new Error("Use getInstance()");
-            
         }
 
         const data = this.storage.load();
