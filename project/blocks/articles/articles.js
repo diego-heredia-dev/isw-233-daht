@@ -2,36 +2,24 @@ import { ArticleManager } from "../../services/articleManager.js";
 import { Command, CommandExecutor, Commands } from "../../services/command.js";
 
 export class ArticlesPage extends HTMLElement {
-    connectedCallback() {
-        this.innerHTML = `
-        <section class="articles" id="articles">
-            <h2 class="articles__title">Mis Artículos</h2>
+    constructor() {
+        super();
+        this.root = this.attachShadow({ mode: "open"});
+    }
 
-            <form class="articles__editor" id="article-form">
-                <input id="article-title-input" placeholder="Titulo" required>
-                <textarea id="article-content-input" placeholder="Contenido" required></textarea>
-                <button type="submit">Publicar</button>
-            </form>
-
-            <div class="articles__container" id="articles-container"></div>
-                <template class="article__template" id="article-template">
-                    <div class="card card--article" data-id="">
-                        <div class="card__content">
-                            <h3 class="card__title"></h3>
-                            <p class="card__description"></p>
-
-                            <div class="card__actions">
-                                <button class="favorite-btn">☆</button>
-                                <button class="delete-btn">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                </template>
-        </section>
-        `;
+    async connectedCallback() {
+        await this.render();
         //setup is called just one time when <articles-page> is inserted in the DOM
+        
         this.setup();
 
+        this.manager = ArticleManager.getInstance();
+
+        //It "locks" the meaning of this. It ensures that even if another part of the program triggers the function, it still knows exactly which component it belongs to.
+        this.renderCallback = () => this.renderArticles();
+        this.manager.addObserver(this.renderCallback);
+
+        /*
         this.manager = ArticleManager.getInstance();
         //() => this.renderArticles(): "Guarda esta nota: CUANDO TE AVISE, dibuja los artículos".
         //Si no usamos () => ... manager tendra un error, por que en js this. es dinamico y se olvidaria de ArticlesPage
@@ -70,29 +58,62 @@ export class ArticlesPage extends HTMLElement {
             }
         });
 
+        this.visibleCount = 5;
+        
+        this.observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    this.loadMore();
+                }
+            });
+        });
+
+        this.sentinel = this.querySelector("#sentinel");
+        this.observer.observe(this.sentinel);
+
         //whereas renderArticles() is also execute one time when <articles-pages> is inserted
         //But it is also called several times due to Observer.
+        this.renderArticles();
+        */
+
         this.renderArticles();
     }
 
     disconnectedCallback() {
         this.manager.removeObserver(this.renderCallback);
+
+        if(this.observer) this.observer.disconnect();
     }
 
     setup() {
-        this.container = this.querySelector("#articles-container");
-        this.template = this.querySelector("#article-template");
+        this.container = this.root.querySelector("#articles-container");
+        this.template = this.root.querySelector("#article-template");
         
-        this.form = this.querySelector("#article-form");
-        this.titleInput = this.querySelector("#article-title-input");
-        this.contentInput = this.querySelector("#article-content-input");
+        this.form = this.root.querySelector("#article-form");
+        this.titleInput = this.root.querySelector("#article-title-input");
+        this.contentInput = this.root.querySelector("#article-content-input");
     }
 
+    async render() {
+        this.root.innerHTML = "";
+
+        const template = document.getElementById("articles-template");
+        const content = template.content.cloneNode(true);
+
+        const style = document.createElement("style");
+        const articlesCSS = await fetch("/blocks/articles/articles.css");
+        const cardCSS = await fetch("/blocks/card/card.css");
+
+        style.textContent = await articlesCSS.text() + await cardCSS.text();
+
+        this.root.appendChild(style);
+        this.root.appendChild(content);
+    }   
+    
     renderArticles() {
         this.container.innerHTML = "";
 
         this.manager.articles.forEach((article) => {
-            console.log(article);
             const card = this.template.content.cloneNode(true).firstElementChild;
 
             const titleEl = card.querySelector(".card__title");
@@ -108,6 +129,20 @@ export class ArticlesPage extends HTMLElement {
             this.container.appendChild(card);
         })
     }
+
+    loadMore() {
+        if(this.loading) return;
+
+        if(this.visibleCount >= this.manager.articles.length) return;
+
+        this.loading = true;
+
+        this.visibleCount += 3;
+        this.renderArticles();
+
+        this.loading = false;
+    }
+
 }
 
 customElements.define("articles-page", ArticlesPage);

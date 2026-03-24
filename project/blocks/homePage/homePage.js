@@ -1,10 +1,9 @@
-import { HeroSection } from "../hero/hero.js";
-import { ProjectsPage } from "../projects/projects.js";
+import { HeroPage } from "../hero/hero.js";
 
 export class HomePage extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
-        <hero-section></hero-section>
+        <hero-page></hero-page>
         `;
     }
 }

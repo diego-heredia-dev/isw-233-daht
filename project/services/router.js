@@ -48,10 +48,13 @@ const Router = {
         });
 
         document.addEventListener("click", (event) => {
-            const link = event.target.closest("a");
+            const path = event.composedPath();
+            const link = path.find(element => element.tagName === "A");
+
             if(!link) return;
             
             const href = link.getAttribute("href");
+            
             if(href.startsWith("http")) return;
             
             event.preventDefault();

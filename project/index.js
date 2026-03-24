@@ -2,6 +2,7 @@ import { ArticleManager } from "./services/articleManager.js";
 import { Command, Commands, CommandExecutor } from "./services/command.js";
 
 import { HomePage } from "./blocks/homepage/homePage.js";
+import { HeroPage } from "./blocks/hero/hero.js";
 import { ProjectsPage } from "./blocks/projects/projects.js";
 import { ArticlesPage } from "./blocks/articles/articles.js";
 import { AboutPage } from "./blocks/about/about.js";
