@@ -8,12 +8,12 @@
     transition: 0.3s;
 }
 
-.card__image {
+.card__media {
     height: 180px;
     overflow: hidden;
 }
 
-.card__image img {
+.card__img {
     width: 100%;
     height: 100%;
     object-fit: cover;

@@ -13,20 +13,6 @@ export class ArticlesPage extends HTMLElement {
         
         this.setup();
 
-        this.manager = ArticleManager.getInstance();
-
-        //It "locks" the meaning of this. It ensures that even if another part of the program triggers the function, it still knows exactly which component it belongs to.
-        this.renderCallback = () => this.renderArticles();
-        this.manager.addObserver(this.renderCallback);
-
-        /*
-        this.manager = ArticleManager.getInstance();
-        //() => this.renderArticles(): "Guarda esta nota: CUANDO TE AVISE, dibuja los artículos".
-        //Si no usamos () => ... manager tendra un error, por que en js this. es dinamico y se olvidaria de ArticlesPage
-
-        this.renderCallback = () => this.renderArticles();
-        this.manager.addObserver(this.renderCallback);
-
         this.form.addEventListener("submit", (event) => {
             event.preventDefault();
 
@@ -47,34 +33,22 @@ export class ArticlesPage extends HTMLElement {
 
             const id = card.dataset.id;
 
-            if(event.target.classList.contains("delete-btn")) {
+            if(event.target.classList.contains("card__btn--delete")) {
                 const cmd = new Command(Commands.DELETE, [id]);
                 CommandExecutor.execute(cmd);
             }
 
-            if(event.target.classList.contains("favorite-btn")) {
+            if(event.target.classList.contains("card__btn--favorite")) {
                 const cmd = new Command(Commands.TOGGLE_FAVORITE, [id]);
                 CommandExecutor.execute(cmd);
             }
         });
 
-        this.visibleCount = 5;
-        
-        this.observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    this.loadMore();
-                }
-            });
-        });
+        this.manager = ArticleManager.getInstance();
 
-        this.sentinel = this.querySelector("#sentinel");
-        this.observer.observe(this.sentinel);
-
-        //whereas renderArticles() is also execute one time when <articles-pages> is inserted
-        //But it is also called several times due to Observer.
-        this.renderArticles();
-        */
+        //It "locks" the meaning of this. It ensures that even if another part of the program triggers the function, it still knows exactly which component it belongs to.
+        this.renderCallback = () => this.renderArticles();
+        this.manager.addObserver(this.renderCallback);
 
         this.renderArticles();
     }
@@ -118,7 +92,7 @@ export class ArticlesPage extends HTMLElement {
 
             const titleEl = card.querySelector(".card__title");
             const contentEl = card.querySelector(".card__description");
-            const favoriteBtn = card.querySelector(".favorite-btn");
+            const favoriteBtn = card.querySelector(".card__btn--favorite");
         
             titleEl.textContent = article.title;
             contentEl.textContent = article.content;
@@ -129,20 +103,6 @@ export class ArticlesPage extends HTMLElement {
             this.container.appendChild(card);
         })
     }
-
-    loadMore() {
-        if(this.loading) return;
-
-        if(this.visibleCount >= this.manager.articles.length) return;
-
-        this.loading = true;
-
-        this.visibleCount += 3;
-        this.renderArticles();
-
-        this.loading = false;
-    }
-
 }
 
 customElements.define("articles-page", ArticlesPage);

@@ -1,41 +1,24 @@
 export class ContactPage extends HTMLElement {
-    connectedCallback() {
-        this.innerHTML = `
-        <section class="contact-me" id="contact-me">
-            <h2 class="contact-me__title">Contáctame</h2>
+    constructor() {
+        super();
+        this.root = this.attachShadow({ mode: "open"});
+    }
+    
+    async connectedCallback() {
+        await this.render();
+    }
 
-            <div class="contact-me__container">
-                <div class="contact-me__form">
+    async render() {
+        const template = document.getElementById("contact-template");
+        const content = template.content.cloneNode(true);
 
-                    <h3 class="contact-me__form-title">Envíame un mensaje</h3>
+        const style = document.createElement("style");
+        const contactCSS = await fetch("/blocks/contact/contact.css");
+        
+        style.textContent = await contactCSS.text();
 
-                    <form class="contact-me__form-body">
-                        <input class="contact-me__input" type="text" placeholder="Nombre completo" required>
-                        <input class="contact-me__input" type="email" placeholder="Correo electrónico" required>
-                        <textarea class="contact-me__textarea" placeholder="Mensaje" rows="4" required></textarea>
-                        <input class="contact-me__input" type="text" placeholder="Número de teléfono (opcional)">
-
-                        <button class="contact-me__button" type="submit">Enviar</button>
-                    </form>
-                </div>
-
-                <div class="contact-me__info">
-                    <p>
-                        <strong>LinkedIn:</strong><br>
-                        https://linkedin.com/in/diego-andres-heredia-ticona-79b11a337/
-                    </p>
-                    <p>
-                        <strong>Github:</strong><br>
-                        https://github.com/diego-heredia-dev
-                    </p>
-                    <p>
-                        <strong>Instagram</strong><br>
-                        diego_hka
-                    </p>
-                </div>
-            </div>
-        </section>
-        `;
+        this.root.appendChild(style);
+        this.root.appendChild(content)
     }
 }
 

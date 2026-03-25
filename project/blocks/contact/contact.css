@@ -1,20 +1,20 @@
-.contact-me {
+.contact {
     padding: 80px 60px;
 }
 
-.contact-me__title {
+.contact__title {
     text-align: center;
     margin-bottom: 50px;
 }
 
-.contact-me__container {
+.contact__container {
     display: flex;
     justify-content: center;
     gap: 60px;
     flex-wrap: wrap;
 }
 
-.contact-me__form {
+.contact__form {
     background-color: #D9D9D9;
     padding: 30px;
     border-radius: 20px;
@@ -22,21 +22,21 @@
     color: black;
 }
 
-.contact-me__form-body {
+.form--contact {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.contact-me__input,
-.contact-me__textarea {
+.form__input,
+.form__textarea {
     padding: 10px 15px;
     border-radius: 15px;
     border: none;
     outline: none;
 }
 
-.contact-me__button {
+.form__submit {
     background-color: #5573D9;
     color: white;
     border: none;
@@ -46,11 +46,11 @@
     transition: 0.3s;
 }
 
-.contact-me__button:hover {
+.form__submit:hover {
     background-color: #3b5bdb;
 }
 
-.contact-me__info {
+.contact__info {
     max-width: 300px;
     color: #ACC5E3;
 }

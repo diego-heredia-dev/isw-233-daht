@@ -35,7 +35,7 @@
     gap: 20px;
 }
 
-.hero__image {
+.hero__media {
     width: 200px;
     height: 200px;
     background-color: #D9D9D9;
@@ -45,7 +45,7 @@
     align-items: center;
 }
 
-.hero__image img {
+.hero__img {
     max-width: 100%;
     height: auto;
 }

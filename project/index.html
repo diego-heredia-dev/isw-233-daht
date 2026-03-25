@@ -12,13 +12,21 @@
 
     <template id="hero-template">
         <section class="hero">
-            <header>
-                <nav class="hero__links">
-                    <ul>
-                        <li><a href="/projects">Project</a></li>
-                        <li><a href="/articles">Articles</a></li>
-                        <li><a href="/about">About Me</a></li>
-                        <li><a href="/contact">Contact Me</a></li>
+            <header class="header">
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a class="nav__link" href="/projects">Project</a>
+                        </li>
+                        <li class="nav__item">
+                            <a class="nav__link" href="/articles">Articles</a>
+                        </li>
+                        <li class="nav__item">
+                            <a class="nav__link" href="/about">About Me</a>
+                        </li>
+                        <li class="nav__item">
+                            <a class="nav__link" href="/contact">Contact Me</a>
+                        </li>
                     </ul>
                 </nav>
             </header>
@@ -27,42 +35,42 @@
             <p class="hero__subtitle">Ubicación: Santa Cruz de la Sierra, Bolivia</p>
 
             <div class="hero__card">
-                <div class="hero__text">
+                <div class="hero__content">
                     <p>Mi nombre es Diego Heredia, estudiante de 3 año de ingenieria de software.</p>
                     <p>Me gusta aprender cosas nueva, siempre dispuesto a ayudar y curioso con el por que de las cosas.</p>
                     <p>Mis hobbies son jugar video juegos, leer libros y novelas ligeras, y desarrollar video juegos.</p>
                 </div>
-                <div class="hero__image">
-                    <img src="https://shorturl.at/Nxwrh" alt="Mudkip-Foto-Mia">
+                <div class="hero__media">
+                    <img class="hero__img" src="https://shorturl.at/Nxwrh" alt="Mudkip-Foto-Mia">
                 </div>
             </div>
         </section>
     </template>
 
     <template id="about-template">
-        <section class="about-me" id="about-me">
-            <h2 class="about-me__title">Sobre Mí</h2>
+        <section class="about" id="about-me">
+            <h2 class="about__title">Sobre Mí</h2>
 
-            <div class="about-me__container">
-                <div class="about-me__box">
-                    <h3 class="about-me__box-title">Perfil Profesional</h3>
-                    <p class="about-me__box-content">
+            <div class="about__container">
+                <div class="card card--about">
+                    <h3 class="card__title">Perfil Profesional</h3>
+                    <p class="card__description">
                         Estudiante de Ingeniería de Software con interés en el desarrollo de aplicaciones y resolución de problemas mediante programación.
                         He trabajado en proyectos académicos utilizando C++, C#, Java, JavaScript y SQL.
                         Motivado por aprender buenas prácticas y fortalecer mis habilidades técnicas y de criterio.
                     </p>
                 </div>
             
-                <div class="about-me__box">
-                    <h3 class="about-me__box-title">Educación</h3>
-                    <p class="about-me__box-content">
+                <div class="card card--about">
+                    <h3 class="card__title">Educación</h3>
+                    <p class="card__description">
                         Ingeniería de Software, UCB (Universidad Católica Boliviana) de Santa Cruz, 2024 - Actualidad
                     </p>
                 </div>
 
-                <div class="about-me__box">
-                    <h3 class="about-me__box-title">Experiencia</h3>
-                    <p class="about-me__box-content">
+                <div class="card card--about">
+                    <h3 class="card__title">Experiencia</h3>
+                    <p class="card__description">
                         Proyectos académicos:
                         - Desarrollo de aplicaciones pequeñas como parte de cursos universitarios.
                         - Implementación de lógica de negocio en C# y Java.
@@ -70,18 +78,18 @@
                     </p>
                 </div>
 
-                <div class="about-me__box">
-                    <h3 class="about-me__box-title">Skills</h3>
-                    <p class="about-me__box-content">
+                <div class="card card--about">
+                    <h3 class="card__title">Skills</h3>
+                    <p class="card__description">
                         FrontEnd: Angular
                         BackEnd: .NET y Spring Boot
                         Base de datos MS SQL Server
                     </p>
                 </div>
 
-                <div class="about-me__box">
-                    <h3 class="about-me__box-title">Hobbies</h3>
-                    <p class="about-me__box-content">
+                <div class="card card--about">
+                    <h3 class="card__title">Hobbies</h3>
+                    <p class="card__description">
                         Leer novelas ligeras y libros, jugar videojuegos, desarrollar videojuegos y ver series y películas.
                     </p>
                 </div>
@@ -98,8 +106,8 @@
                 <a href="https://github.com/diego-heredia-dev/DB2-TiendaManga"
                 target="_blank"
                 class="card card--project">
-                    <div class="card__image">
-                        <img src="https://shorturl.at/oTaQq" alt="Mangas">
+                    <div class="card__media">
+                        <img class="card__img" src="https://shorturl.at/oTaQq" alt="Mangas">
                     </div>
 
                     <div class="card__content">
@@ -115,8 +123,8 @@
                 <a href="https://github.com/diego-heredia-dev/Examen-Final-Programacion-II"
                 target="_blank"
                 class="card card--project">
-                    <div class="card__image">
-                        <img src="https://shorturl.at/TdrhQ" alt="biblioteca">
+                    <div class="card__media">
+                        <img class="card__img" src="https://shorturl.at/TdrhQ" alt="biblioteca">
                     </div>
 
                     <div class="card__content">
@@ -132,8 +140,8 @@
                 <a href="https://github.com/linuxenthusiastic/Reserva-Estacionamiento"
                 target="_blank"
                 class="card card--project">
-                    <div class="card__image">
-                        <img src="https://shorturl.at/Awsxw" alt="Estacinamientos">
+                    <div class="card__media">
+                        <img class="card__img" src="https://shorturl.at/Awsxw" alt="Estacinamientos">
                     </div>
                     <div class="card__content">
                         <p class="card__date">17 de diciembre de 2025</p>
@@ -152,30 +160,64 @@
         <section class="articles" id="articles">
             <h2 class="articles__title">Mis Artículos</h2>
 
-            <form class="articles__editor" id="article-form">
-                <input id="article-title-input" placeholder="Titulo" required>
-                <textarea id="article-content-input" placeholder="Contenido" required></textarea>
-                <button type="submit">Publicar</button>
+            <form class="form form--article" id="article-form">
+                <input class="form__input" id="article-title-input" placeholder="Titulo" required>
+                <textarea class="form__textarea" id="article-content-input" placeholder="Contenido" required></textarea>
+                <button class="form__submit" type="submit">Publicar</button>
             </form>
 
             <div class="articles__container" id="articles-container"></div>
-                <template class="article__template" id="article-template">
-                    <div class="card card--article" data-id="">
-                        <div class="card__content">
-                            <h3 class="card__title"></h3>
-                            <p class="card__description"></p>
+            <template id="article-template">
+                <div class="card card--article" data-id="">
+                    <div class="card__content">
+                        <h3 class="card__title"></h3>
+                        <p class="card__description"></p>
 
-                            <div class="card__actions">
-                                <button class="favorite-btn">☆</button>
-                                <button class="delete-btn">Delete</button>
-                            </div>
+                        <div class="card__actions">
+                            <button class="card__btn card__btn--favorite">☆</button>
+                            <button class="card__btn card__btn--delete">Delete</button>
                         </div>
                     </div>
-                </template>
+                </div>
+            </template>
 
             <div id="sentinel"></div>
         </section>
     </template>
     
+    <template id="contact-template">
+        <section class="contact" id="contact-me">
+            <h2 class="contact__title">Contáctame</h2>
+
+            <div class="contact__container">
+                <div class="contact__form">
+
+                    <h3 class="contact__form-title">Envíame un mensaje</h3>
+
+                    <form class="form form--contact">
+                        <input class="form__input" type="text" placeholder="Nombre completo" required>
+                        <input class="form__input" type="email" placeholder="Correo electrónico" required>
+                        <textarea class="form__textarea" placeholder="Mensaje" rows="4" required></textarea>
+                        <input class="form__input" type="text" placeholder="Número de teléfono (opcional)">
+
+                        <button class="form__submit" type="submit">Enviar</button>
+                    </form>
+                </div>
+
+                <div class="contact__info">
+                    <a href="https://linkedin.com/in/diego-andres-heredia-ticona-79b11a337/" target="_blank">
+                        <strong>LinkedIn</strong><br>
+                    </a>
+                    <a href="https://github.com/diego-heredia-dev" target="_blank">
+                        <strong>Github</strong><br>
+                    </a>
+                    <p>
+                        <strong>Instagram: </strong><br>
+                        diego_hka
+                    </p>
+                </div>
+            </div>
+        </section>
+    </template>
 </body>
 </html>
