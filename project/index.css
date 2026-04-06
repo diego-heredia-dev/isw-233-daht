@@ -6,6 +6,7 @@
 @import './blocks/contact/contact.css';
 
 body {
+    margin: 0;
     background-color: #070C14;
     color: #5573D9;
 }
