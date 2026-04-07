@@ -5,6 +5,9 @@ export class ArticlesPage extends HTMLElement {
     constructor() {
         super();
         this.root = this.attachShadow({ mode: "open"});
+        this.visibleCount = 0;
+        this.batchSize = 3;
+        this.isLoading = false;
     }
 
     async connectedCallback() {
@@ -46,26 +49,12 @@ export class ArticlesPage extends HTMLElement {
 
         this.manager = ArticleManager.getInstance();
 
-        //It "locks" the meaning of this. It ensures that even if another part of the program triggers the function, it still knows exactly which component it belongs to.
-        this.renderCallback = () => this.renderArticles();
+        //It "locks" the meaning of this. . It ensures that even if another part of the program triggers the function, it still knows exactly which component it belongs to.
+        this.renderCallback = () => this.renderInitialArticles();
         this.manager.addObserver(this.renderCallback);
 
-        this.renderArticles();
-    }
-
-    disconnectedCallback() {
-        this.manager.removeObserver(this.renderCallback);
-
-        if(this.observer) this.observer.disconnect();
-    }
-
-    setup() {
-        this.container = this.root.querySelector("#articles-container");
-        this.template = this.root.querySelector("#article-template");
-        
-        this.form = this.root.querySelector("#article-form");
-        this.titleInput = this.root.querySelector("#article-title-input");
-        this.contentInput = this.root.querySelector("#article-content-input");
+        this.setupObserver();
+        this.renderInitialArticles();
     }
 
     async render() {
@@ -82,26 +71,86 @@ export class ArticlesPage extends HTMLElement {
 
         this.root.appendChild(style);
         this.root.appendChild(content);
-    }   
-    
-    renderArticles() {
-        this.container.innerHTML = "";
+    }  
 
-        this.manager.articles.forEach((article) => {
+    disconnectedCallback() {
+        this.manager.removeObserver(this.renderCallback);
+
+        if(this.observer) this.observer.disconnect();
+    }
+
+    setup() {
+        this.sentinel = this.root.querySelector("#sentinel");
+        this.container = this.root.querySelector("#articles-container");
+        this.template = this.root.querySelector("#article-template");
+        
+        this.form = this.root.querySelector("#article-form");
+        this.titleInput = this.root.querySelector("#article-title-input");
+        this.contentInput = this.root.querySelector("#article-content-input");
+    }
+
+    setupObserver() {
+        //IntersectionObserver fires every time the intersection state changes or is re-evaluated
+        //so we must use asycn and isLoading in order to avoid executing the callback several times in just one scroll
+        this.observer = new IntersectionObserver(async (entries) => {
+            const entry = entries[0];
+
+            if(!entry.isIntersecting) return;
+            if(this.isLoading) return;
+
+            this.isLoading = true;
+
+            this.appendArticles();
+
+            this.isLoading = false;
+
+        }, {
+            threshold: 0
+        });
+
+        this.observer.observe(this.sentinel);
+    }
+
+    renderInitialArticles() {
+        this.container.innerHTML = "";
+        this.visibleCount = 0;
+
+        this.appendArticles();
+
+        if (this.observer) {
+            this.observer.observe(this.sentinel);
+        }
+    }
+
+    appendArticles() {
+        const articles = this.manager.articles;
+
+        const next = articles.slice(
+            this.visibleCount,
+            this.visibleCount + this.batchSize
+        )
+
+        next.forEach((article) => {
             const card = this.template.content.cloneNode(true).firstElementChild;
 
-            const titleEl = card.querySelector(".card__title");
-            const contentEl = card.querySelector(".card__description");
+            const cardTitle = card.querySelector(".card__title");
+            const cardContent = card.querySelector(".card__description");
             const favoriteBtn = card.querySelector(".card__btn--favorite");
-        
-            titleEl.textContent = article.title;
-            contentEl.textContent = article.content;
+
+            cardTitle.textContent = article.title;
+            cardContent.textContent = article.content;
             favoriteBtn.textContent = article.favorite ? "★" : "☆";
 
             card.dataset.id = article.id;
 
             this.container.appendChild(card);
-        })
+        });
+
+        this.visibleCount += next.length;
+
+        if (this.visibleCount >= articles.length) {
+            this.observer.unobserve(this.sentinel);
+        }
     }
 }
 
