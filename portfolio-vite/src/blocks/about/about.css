@@ -1,0 +1,31 @@
+.about {
+    padding: 80px 60px;
+}
+
+.about__title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.about__container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.card--about {
+    background-color: #D9D9D9;
+    color: black;
+    padding: 25px;
+    border-radius: 15px;
+}
+
+.card__title {
+    color: #5573D9;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+

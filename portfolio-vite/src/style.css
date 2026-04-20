@@ -1,0 +1,12 @@
+@import './blocks/hero/hero.css';
+@import './blocks/card/card.css';
+@import './blocks/projects/projects.css';
+@import './blocks/articles/articles.css';
+@import './blocks/about/about.css';
+@import './blocks/contact/contact.css';
+
+body {
+    margin: 0;
+    background-color: #070C14;
+    color: #5573D9;
+}
