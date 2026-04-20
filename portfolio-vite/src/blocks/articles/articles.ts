@@ -1,3 +1,4 @@
+import { Article } from "../../services/article.js";
 import { ArticleManager } from "../../services/articleManager.js";
 import { Command, CommandExecutor, Commands } from "../../services/command.js";
 
@@ -99,13 +100,13 @@ export class ArticlesPage extends HTMLElement {
     }
 
     setup() {
-        this.sentinel = this.root.querySelector("#sentinel");
-        this.container = this.root.querySelector("#articles-container");
-        this.template = this.root.querySelector("#article-template");
+        this.sentinel = this.root.querySelector("#sentinel") as HTMLElement;
+        this.container = this.root.querySelector("#articles-container") as HTMLElement;
+        this.template = this.root.querySelector("#article-template") as HTMLTemplateElement;
         
-        this.form = this.root.querySelector("#article-form");
-        this.titleInput = this.root.querySelector("#article-title-input");
-        this.contentInput = this.root.querySelector("#article-content-input");
+        this.form = this.root.querySelector("#article-form") as HTMLFormElement;
+        this.titleInput = this.root.querySelector("#article-title-input") as HTMLInputElement;
+        this.contentInput = this.root.querySelector("#article-content-input")as HTMLInputElement;
     }
 
     setupObserver() {
@@ -149,12 +150,13 @@ export class ArticlesPage extends HTMLElement {
             this.visibleCount + this.batchSize
         )
 
-        next.forEach((article) => {
-            const card = this.template.content.cloneNode(true).firstElementChild;
+        next.forEach((article: Article) => {
+            const clone = this.template.content.cloneNode(true) as DocumentFragment;
+            const card = clone.firstElementChild as HTMLElement;
 
-            const cardTitle = card.querySelector(".card__title");
-            const cardContent = card.querySelector(".card__description");
-            const favoriteBtn = card.querySelector(".card__btn--favorite");
+            const cardTitle = card.querySelector(".card__title")!;
+            const cardContent = card.querySelector(".card__description")!;
+            const favoriteBtn = card.querySelector(".card__btn--favorite")!;
 
             cardTitle.textContent = article.title;
             cardContent.textContent = article.content;
