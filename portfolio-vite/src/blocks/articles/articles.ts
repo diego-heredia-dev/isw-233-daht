@@ -11,12 +11,12 @@ export class ArticlesPage extends HTMLElement {
     //! dice: “sí, no lo inicializo en el constructor, pero va a existir”
     form!: HTMLFormElement;
     titleInput!: HTMLInputElement;
-    contentInput!: HTMLInputElement;
+    contentInput!: HTMLTextAreaElement;
     container!: HTMLElement;
     template!: HTMLTemplateElement;
     sentinel!: HTMLElement;
     
-    manager: any;
+    manager!: ArticleManager;
     observer!: IntersectionObserver;
     renderCallback!: () => void;
 
@@ -34,7 +34,7 @@ export class ArticlesPage extends HTMLElement {
         
         this.setup();
 
-        this.form.addEventListener("submit", (event) => {
+        this.form.addEventListener("submit", (event: SubmitEvent) => {
             event.preventDefault();
 
             const title = this.titleInput.value.trim();
@@ -48,13 +48,14 @@ export class ArticlesPage extends HTMLElement {
             this.form.reset();
         });
 
-        this.container.addEventListener("click", (event) => {
+        this.container.addEventListener("click", (event: MouseEvent) => {
             const target = event.target as HTMLElement;
             const card = target.closest(".card") as HTMLElement;
 
-            if(!card) return;
+            if (!card) return;
 
             const id = card.dataset.id;
+            if (!id) return;
 
             if(target.classList.contains("card__btn--delete")) {
                 const cmd = new Command(Commands.DELETE, [id]);
@@ -81,11 +82,11 @@ export class ArticlesPage extends HTMLElement {
         this.root.innerHTML = "";
 
         const template = document.getElementById("articles-template") as HTMLTemplateElement;
-        const content = template!.content.cloneNode(true);
+        const content = template.content.cloneNode(true);
 
         const style = document.createElement("style");
-        const articlesCSS = await fetch("/blocks/articles/articles.css");
-        const cardCSS = await fetch("/blocks/card/card.css");
+        const articlesCSS = await fetch("/src/blocks/articles/articles.css");
+        const cardCSS = await fetch("/src/blocks/card/card.css");
 
         style.textContent = await articlesCSS.text() + await cardCSS.text();
 
@@ -106,7 +107,7 @@ export class ArticlesPage extends HTMLElement {
         
         this.form = this.root.querySelector("#article-form") as HTMLFormElement;
         this.titleInput = this.root.querySelector("#article-title-input") as HTMLInputElement;
-        this.contentInput = this.root.querySelector("#article-content-input")as HTMLInputElement;
+        this.contentInput = this.root.querySelector("#article-content-input")as HTMLTextAreaElement;
     }
 
     setupObserver() {
@@ -154,9 +155,9 @@ export class ArticlesPage extends HTMLElement {
             const clone = this.template.content.cloneNode(true) as DocumentFragment;
             const card = clone.firstElementChild as HTMLElement;
 
-            const cardTitle = card.querySelector(".card__title")!;
-            const cardContent = card.querySelector(".card__description")!;
-            const favoriteBtn = card.querySelector(".card__btn--favorite")!;
+            const cardTitle = card.querySelector(".card__title") as HTMLElement;
+            const cardContent = card.querySelector(".card__description") as HTMLElement;
+            const favoriteBtn = card.querySelector(".card__btn--favorite") as HTMLElement;
 
             cardTitle.textContent = article.title;
             cardContent.textContent = article.content;
